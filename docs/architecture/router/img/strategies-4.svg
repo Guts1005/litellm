@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 270" role="img" aria-labelledby="t">
+<title id="t">Auto router pre-route sequence</title>
+<desc>The core sends pre_route for model "smart" to the host, the host has the auto router classify the prompt, the group gpt-4o-mini comes back, and the core resolves, filters and runs the strategy on it.</desc>
+<style>/* litellm architecture diagrams v1, from the litellm-docs Aurora theme (src/css/custom.css). Embed verbatim in every SVG. */
+svg { --ink:#272b37; --text:#3a3e4b; --muted:#646875; --line:#a3a8ba; --rule:#e3e5ee; --card:#ffffff; --canvas:#f7f8fd; --accent:#0117be; --accent-bg:#f2f4fd; --accent-line:#b9c1f0; --host:#1f6fa8; --host-bg:#eaf5fd; --store:#6b3fb8; --store-bg:#efe8fb; --warn:#b42318; --warn-bg:#fdecea; --ok:#1a7f4b; --ok-bg:#e7f6ee; }
+@media (prefers-color-scheme: dark) {
+  svg { --ink:#ffffff; --text:#d6d4ea; --muted:#a6a4c6; --line:#5c6294; --rule:#1a1f45; --card:#0f1335; --canvas:#080b26; --accent:#9fabff; --accent-bg:#161b4a; --accent-line:#3d4790; --host:#7cc4f5; --host-bg:#0f2a44; --store:#c3a6f0; --store-bg:#23173f; --warn:#f19a9a; --warn-bg:#3a1622; --ok:#7ee2a8; --ok-bg:#0f2e25; }
+}
+text { font-family: Geist, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; fill: var(--text); }
+.mono { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+.title { font-weight: 600; fill: var(--ink); }
+.small { font-size: 11.5px; }
+.muted { fill: var(--muted); }
+.accent { fill: var(--accent); }
+.center { text-anchor: middle; }
+.end { text-anchor: end; }
+.canvas { fill: var(--canvas); stroke: var(--rule); stroke-width: 1; }
+.box { fill: var(--card); stroke: var(--line); stroke-width: 1.2; }
+.box.core { fill: var(--accent-bg); stroke: var(--accent); }
+.box.host { fill: var(--host-bg); stroke: var(--host); }
+.box.store { fill: var(--store-bg); stroke: var(--store); }
+.box.warn { fill: var(--warn-bg); stroke: var(--warn); }
+.box.ok { fill: var(--ok-bg); stroke: var(--ok); }
+.box.decision { fill: var(--card); stroke: var(--ink); }
+.group { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 5 4; }
+.group.core { stroke: var(--accent-line); }
+.group-label { font-size: 11px; font-weight: 600; fill: var(--muted); letter-spacing: 0.06em; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.4; }
+.edge.strong { stroke: var(--ink); }
+.edge.dashed { stroke-dasharray: 5 4; }
+.edge.core { stroke: var(--accent); }
+.edge.warn { stroke: var(--warn); }
+.edge-label { font-size: 11.5px; fill: var(--muted); paint-order: stroke; stroke: var(--canvas); stroke-width: 4px; stroke-linejoin: round; }
+.arrowhead { fill: var(--line); }
+.arrowhead.strong { fill: var(--ink); }
+.arrowhead.core { fill: var(--accent); }
+.arrowhead.warn { fill: var(--warn); }
+.lifeline { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; }
+.note { fill: var(--accent-bg); stroke: var(--accent-line); stroke-width: 1; }
+.step { fill: var(--accent); }
+.step-text { font-size: 10.5px; font-weight: 600; fill: var(--card); text-anchor: middle; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="arrow-core" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead core" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<rect class="canvas" x="0.5" y="0.5" width="699" height="269" rx="8"/>
+<line class="lifeline" x1="110" y1="56" x2="110" y2="254"/>
+<line class="lifeline" x1="350" y1="56" x2="350" y2="254"/>
+<line class="lifeline" x1="590" y1="56" x2="590" y2="254"/>
+<rect class="box core" x="35.0" y="16" width="150" height="40" rx="6"/>
+<text class="title center" x="110" y="41">Core</text>
+<rect class="box host" x="275.0" y="16" width="150" height="40" rx="6"/>
+<text class="title center" x="350" y="41">Host</text>
+<rect class="box host" x="515.0" y="16" width="150" height="40" rx="6"/>
+<text class="title center" x="590" y="41">Auto router <tspan class="mono">"smart"</tspan></text>
+<path class="edge" d="M111,92 H348" marker-end="url(#arrow)"/>
+<circle class="step" cx="132" cy="80" r="8"/>
+<text class="step-text" x="132" y="83.7">1</text>
+<text class="edge-label" x="146" y="84"><tspan class="mono">pre_route</tspan> for <tspan class="mono">model="smart"</tspan></text>
+<path class="edge" d="M351,132 H588" marker-end="url(#arrow)"/>
+<circle class="step" cx="372" cy="120" r="8"/>
+<text class="step-text" x="372" y="123.7">2</text>
+<text class="edge-label" x="386" y="124">classify the prompt</text>
+<path class="edge dashed" d="M589,172 H352" marker-end="url(#arrow)"/>
+<circle class="step" cx="372" cy="160" r="8"/>
+<text class="step-text" x="372" y="163.7">3</text>
+<text class="edge-label" x="386" y="164">model group <tspan class="mono">gpt-4o-mini</tspan></text>
+<path class="edge dashed" d="M349,212 H112" marker-end="url(#arrow)"/>
+<circle class="step" cx="132" cy="200" r="8"/>
+<text class="step-text" x="132" y="203.7">4</text>
+<text class="edge-label" x="146" y="204"><tspan class="mono">gpt-4o-mini</tspan></text>
+<path class="edge core" d="M111,230 H150 V246 H113" marker-end="url(#arrow-core)"/>
+<circle class="step" cx="166" cy="238" r="8"/>
+<text class="step-text" x="166" y="241.7">5</text>
+<text class="edge-label" x="180" y="242">resolve, filters and strategy on <tspan class="mono">gpt-4o-mini</tspan></text>
+</svg>
